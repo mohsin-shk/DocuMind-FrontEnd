@@ -4,17 +4,20 @@ import { AuthBootstrap } from "@/components/auth/AuthBootstrap";
 import { RouterProvider } from "react-router-dom";
 import { router } from "@/routes/AppRouter";
 import { Toaster } from "sonner";
+import { ThemeProvider } from "./ThemeProvider";
 
 export const AppProviders = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthBootstrap>
-        <RouterProvider router={router} />
-      </AuthBootstrap>
-      <Toaster
-        richColors
-        position="top-right"
-      />
+      <ThemeProvider>
+        <AuthBootstrap>
+          <RouterProvider router={router} />
+        </AuthBootstrap>
+        <Toaster
+          richColors
+          position="top-right"
+        />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 };

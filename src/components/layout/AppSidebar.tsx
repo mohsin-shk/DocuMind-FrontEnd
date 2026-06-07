@@ -19,6 +19,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import DocumentSidebarSection
+  from "@/features/documents/components/DocumentSidebarSection";
 
 export default function AppSidebar() {
   return (
@@ -50,25 +52,7 @@ export default function AppSidebar() {
 
       <SidebarContent>
         {/* Documents */}
-
-        <SidebarGroup>
-          <SidebarGroupLabel>
-            Documents
-          </SidebarGroupLabel>
-
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton disabled>
-                  <FileText />
-                  <span>
-                    No documents yet
-                  </span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        <DocumentSidebarSection/>
 
         {/* Chats */}
 

@@ -1,5 +1,6 @@
 import {
   Moon,
+  Sun,
   Settings,
   User,
   LogOut,
@@ -10,6 +11,9 @@ import {
 } from "@/components/ui/sidebar";
 
 import { Button } from "@/components/ui/button";
+import {
+  useThemeStore,
+} from "@/store/theme.store";
 
 import {
   DropdownMenu,
@@ -25,6 +29,11 @@ import { useAuthStore } from "@/store/auth.store";
 import { useLogoutMutation } from "@/features/auth/hooks/useLogoutMutation";
 
 export default function Topbar() {
+  const {
+    theme,
+    toggleTheme,
+  } = useThemeStore();
+
   const logoutMutation =
     useLogoutMutation();
 
@@ -59,8 +68,13 @@ export default function Topbar() {
         <Button
           variant="ghost"
           size="icon"
+          onClick={toggleTheme}
         >
-          <Moon className="size-4" />
+          {theme === "dark" ? (
+            <Sun className="size-4" />
+          ) : (
+            <Moon className="size-4" />
+          )}
         </Button>
 
         <DropdownMenu>
