@@ -12,5 +12,11 @@ export const queryKeys = {
         "documents",
         documentId,
       ] as const,
-  }
+  },
+  chats: {
+  all: ["chats"] as const,
+
+  detail: (chatId: string) =>
+    ["chats", chatId] as const,
+},
 };

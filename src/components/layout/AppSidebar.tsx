@@ -1,11 +1,13 @@
 import {
-  FileText,
-  MessageSquare,
-  Plus,
+  // FileText,
+  // MessageSquare,
+  // Plus,
   Settings,
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
+import CreateChatDialog from "@/features/chat/components/CreateChatDialog";
+import ChatSidebarSection from "@/features/chat/components/ChatSidebarSection";
 
 import {
   Sidebar,
@@ -40,10 +42,11 @@ export default function AppSidebar() {
           </p>
         </div>
 
-        <Button className="w-full">
+        {/* <Button className="w-full">
           <Plus className="size-4" />
           New Chat
-        </Button>
+        </Button> */}
+        <CreateChatDialog />
       </SidebarHeader>
 
       {/* ========================================
@@ -56,24 +59,7 @@ export default function AppSidebar() {
 
         {/* Chats */}
 
-        <SidebarGroup>
-          <SidebarGroupLabel>
-            Chats
-          </SidebarGroupLabel>
-
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton disabled>
-                  <MessageSquare />
-                  <span>
-                    No chats yet
-                  </span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        <ChatSidebarSection />
       </SidebarContent>
 
       {/* ========================================
