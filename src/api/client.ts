@@ -37,6 +37,23 @@ apiClient.interceptors.response.use(
     const originalRequest =
       axiosError.config as RetryAxiosRequestConfig;
 
+    /*
+    ========================================
+    SKIP AUTH ENDPOINTS
+    ========================================
+    */
+
+    const requestUrl =
+      originalRequest.url ?? "";
+
+    if (
+      requestUrl.includes("/auth/login") ||
+      requestUrl.includes("/auth/register") ||
+      requestUrl.includes("/auth/refresh-token")
+    ) {
+      return Promise.reject(error);
+    }
+
 
     /*
     ========================================
@@ -101,7 +118,7 @@ apiClient.interceptors.response.use(
 
       // originalRequest.headers.Authorization =
       //   `Bearer ${newAccessToken}`;
-      
+
       originalRequest.headers.set(
         "Authorization",
         `Bearer ${newAccessToken}`
