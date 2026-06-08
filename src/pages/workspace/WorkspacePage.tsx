@@ -1,20 +1,30 @@
-import AppShell from "@/components/layout/AppShell";
+import { useParams } from "react-router-dom";
+
+import ChatView from "@/features/chat/components/ChatView";
 
 export default function WorkspacePage() {
-  return (
-    <AppShell>
-      <div className="flex h-full items-center justify-center">
-        <div className="max-w-2xl text-center">
-          <h1 className="text-4xl font-bold">
-            DocuMind
-          </h1>
+  const { chatId } =
+    useParams();
 
-          <p className="mt-4 text-muted-foreground">
-            Upload documents and start
-            intelligent conversations.
+  if (!chatId) {
+    return (
+      <div className="flex h-full items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-semibold">
+            Welcome to DocuMind
+          </h2>
+
+          <p className="mt-2 text-muted-foreground">
+            Select a chat or create a new one.
           </p>
         </div>
       </div>
-    </AppShell>
+    );
+  }
+
+  return (
+    <ChatView
+      chatId={chatId}
+    />
   );
 }
