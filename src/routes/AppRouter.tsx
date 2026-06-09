@@ -9,6 +9,7 @@ import LoginPage from "@/pages/auth/LoginPage";
 import RegisterPage from "@/pages/auth/RegisterPage";
 
 import WorkspacePage from "@/pages/workspace/WorkspacePage";
+import DocumentPreviewPage from "@/pages/documents/DocumentPreviewPage";
 
 export const router =
     createBrowserRouter([
@@ -37,6 +38,10 @@ export const router =
                     path: "/chat/:chatId",
                     element: <WorkspacePage />,
                 },
+                {
+                    path: "/documents/:documentId",
+                    element: <DocumentPreviewPage />,
+                }
             ],
         },
     ]);

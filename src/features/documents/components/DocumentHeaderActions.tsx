@@ -2,11 +2,6 @@ import {
   MoreHorizontal,
   Trash2,
 } from "lucide-react";
-import { FileText } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-
-import { Button }
-  from "@/components/ui/button";
 
 import {
   DropdownMenu,
@@ -27,21 +22,19 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-import {
-  useDeleteDocumentMutation,
-} from "@/features/documents/hooks/useDeleteDocumentMutation";
+import { Button } from "@/components/ui/button";
 
-interface DocumentItemActionsProps {
+import { useDeleteDocumentMutation } from "../hooks/useDeleteDocumentMutation";
+
+interface DocumentHeaderActionsProps {
   documentId: string;
 }
 
-export default function DocumentItemActions({
+export default function DocumentHeaderActions({
   documentId,
-}: DocumentItemActionsProps) {
+}: DocumentHeaderActionsProps) {
   const deleteDocumentMutation =
-    useDeleteDocumentMutation();
-
-  const navigate = useNavigate();
+  useDeleteDocumentMutation();
 
   return (
     <AlertDialog>
@@ -50,28 +43,14 @@ export default function DocumentItemActions({
           <Button
             variant="ghost"
             size="icon"
-            className="
-              size-7
-              text-muted-foreground
-            "
           >
-            <MoreHorizontal className="size-4" />
+            <MoreHorizontal />
           </Button>
         </DropdownMenuTrigger>
 
         <DropdownMenuContent
           align="end"
-        > <DropdownMenuItem
-          onClick={() =>
-            navigate(
-              `/documents/${documentId}`
-            )
-          }
         >
-            <FileText className="mr-2 size-4" />
-
-            Open Document
-          </DropdownMenuItem>
           <AlertDialogTrigger asChild>
             <DropdownMenuItem
               onSelect={(event) =>
@@ -80,7 +59,6 @@ export default function DocumentItemActions({
               className="text-destructive"
             >
               <Trash2 className="mr-2 size-4" />
-
               Delete Document
             </DropdownMenuItem>
           </AlertDialogTrigger>
@@ -95,8 +73,8 @@ export default function DocumentItemActions({
 
           <AlertDialogDescription>
             This will permanently remove
-            the document, vectors and
-            associated metadata.
+            the document and all
+            the context associated to this document.
           </AlertDialogDescription>
         </AlertDialogHeader>
 

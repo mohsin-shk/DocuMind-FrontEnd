@@ -1,6 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
-
+import {
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { deleteDocument } from "@/api/document.api";
 
 import { queryClient } from "@/lib/query-client";
@@ -9,6 +12,10 @@ import { getErrorMessage } from "@/lib/error-message";
 
 export const useDeleteDocumentMutation =
   () => {
+    const navigate = useNavigate();
+
+    const location = useLocation();
+
     return useMutation({
       mutationFn: deleteDocument,
 
@@ -58,6 +65,14 @@ export const useDeleteDocumentMutation =
         toast.success(
           response.message
         );
+        if (
+          location.pathname ===
+          `/documents/${deletedDocumentId}`
+        ) {
+          navigate("/", {
+            replace: true,
+          });
+        }
       },
 
       onError: (error) => {

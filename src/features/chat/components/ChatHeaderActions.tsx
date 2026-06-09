@@ -2,11 +2,6 @@ import {
   MoreHorizontal,
   Trash2,
 } from "lucide-react";
-import { FileText } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-
-import { Button }
-  from "@/components/ui/button";
 
 import {
   DropdownMenu,
@@ -27,21 +22,21 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-import {
-  useDeleteDocumentMutation,
-} from "@/features/documents/hooks/useDeleteDocumentMutation";
+import { Button } from "@/components/ui/button";
 
-interface DocumentItemActionsProps {
-  documentId: string;
+import {
+  useDeleteChatMutation,
+} from "@/features/chat/hooks/useDeleteChatMutation";
+
+interface ChatHeaderActionsProps {
+  chatId: string;
 }
 
-export default function DocumentItemActions({
-  documentId,
-}: DocumentItemActionsProps) {
-  const deleteDocumentMutation =
-    useDeleteDocumentMutation();
-
-  const navigate = useNavigate();
+export default function ChatHeaderActions({
+  chatId,
+}: ChatHeaderActionsProps) {
+  const deleteChatMutation =
+    useDeleteChatMutation();
 
   return (
     <AlertDialog>
@@ -50,28 +45,14 @@ export default function DocumentItemActions({
           <Button
             variant="ghost"
             size="icon"
-            className="
-              size-7
-              text-muted-foreground
-            "
           >
-            <MoreHorizontal className="size-4" />
+            <MoreHorizontal />
           </Button>
         </DropdownMenuTrigger>
 
         <DropdownMenuContent
           align="end"
-        > <DropdownMenuItem
-          onClick={() =>
-            navigate(
-              `/documents/${documentId}`
-            )
-          }
         >
-            <FileText className="mr-2 size-4" />
-
-            Open Document
-          </DropdownMenuItem>
           <AlertDialogTrigger asChild>
             <DropdownMenuItem
               onSelect={(event) =>
@@ -80,8 +61,7 @@ export default function DocumentItemActions({
               className="text-destructive"
             >
               <Trash2 className="mr-2 size-4" />
-
-              Delete Document
+              Delete Chat
             </DropdownMenuItem>
           </AlertDialogTrigger>
         </DropdownMenuContent>
@@ -90,13 +70,13 @@ export default function DocumentItemActions({
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Delete Document?
+            Delete Chat?
           </AlertDialogTitle>
 
           <AlertDialogDescription>
             This will permanently remove
-            the document, vectors and
-            associated metadata.
+            the conversation and all
+            associated messages.
           </AlertDialogDescription>
         </AlertDialogHeader>
 
@@ -107,8 +87,8 @@ export default function DocumentItemActions({
 
           <AlertDialogAction
             onClick={() =>
-              deleteDocumentMutation.mutate(
-                documentId
+              deleteChatMutation.mutate(
+                chatId
               )
             }
           >

@@ -7,6 +7,8 @@ import {
 import {
   useChatQuery,
 } from "@/features/chat/hooks/useChatQuery";
+import ChatHeaderActions
+  from "./ChatHeaderActions";
 
 import MessageList
   from "./MessageList";
@@ -53,21 +55,39 @@ export default function ChatView({
     <div className="flex h-full min-h-0 flex-col">
       {/* Header */}
 
-      <div className="border-b px-6 py-4">
+      {/* <div className="border-b px-6 py-4">
         <h2 className="font-semibold">
           {chat?.title}
         </h2>
         <ChatDocumentBadges
           documents={chat?.documents ?? []}
         />
-      </div>
-      {/* <div className="border-b">
-        <div className="mx-auto max-w-5xl px-6 py-4">
-          <h2 className="font-semibold">
-            {chat?.title}
-          </h2>
-        </div>
+        <ChatHeaderActions
+              chatId={chatId}
+            />
       </div> */}
+      <div className="border-b">
+        <div className="mx-auto max-w-5xl px-6 py-4">
+          <div className="flex items-start justify-between gap-4">
+            <div className="min-w-0">
+              <h2 className="font-semibold">
+                {chat?.title}
+              </h2>
+
+              <ChatDocumentBadges
+                documents={
+                  chat?.documents ?? []
+                }
+              />
+            </div>
+
+            <ChatHeaderActions
+              chatId={chatId}
+            />
+          </div>
+        </div>
+      </div>
+
 
       {/* Messages */}
 
