@@ -1,7 +1,9 @@
 import { FileText } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-
+import type {
+  Document,
+} from "@/types/document.types";
 import {
   useDocumentsQuery,
 } from "@/features/documents/hooks/useDocumentsQuery";
@@ -10,7 +12,7 @@ interface DocumentSelectorProps {
   selectedDocumentIds: string[];
 
   onSelect: (
-    documentId: string
+    document: Document
   ) => void;
 }
 
@@ -71,7 +73,7 @@ export default function DocumentSelector({
             className="w-full justify-start"
             onClick={() =>
               onSelect(
-                document._id
+                document
               )
             }
           >

@@ -1,5 +1,14 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
+import type {
+  Document,
+  UploadDocumentResponse,
+} from "@/types/document.types";
+
+import DocumentUploadButton
+  from "@/features/documents/components/DocumentUploadButton";
+
+import SelectedDocumentsList from "./SelectedDocumentsList";
 
 import { Button } from "@/components/ui/button";
 
@@ -13,7 +22,7 @@ import {
 } from "@/components/ui/dialog";
 
 import DocumentSelector from "./DocumentSelector";
-import SelectedDocumentBadge from "./SelectedDocumentBadge";
+
 
 import {
   useCreateChatMutation,
@@ -28,36 +37,64 @@ export default function CreateChatDialog() {
     setSelectedDocumentIds,
   ] = useState<string[]>([]);
 
+  const [
+    selectedDocuments,
+    setSelectedDocuments,
+  ] = useState<Document[]>([]);
+
   const createChatMutation =
     useCreateChatMutation();
 
   const handleSelectDocument = (
-    documentId: string
+    document: Document
   ) => {
-    setSelectedDocumentIds(
-      (previous) => {
-        if (
-          previous.includes(
-            documentId
-          )
-        ) {
-          return previous.filter(
+    const documentId =
+      document._id;
+
+    const alreadySelected =
+      selectedDocumentIds.includes(
+        documentId
+      );
+
+    if (alreadySelected) {
+      setSelectedDocumentIds(
+        (previous) =>
+          previous.filter(
             (id) =>
               id !== documentId
-          );
-        }
+          )
+      );
 
-        if (
-          previous.length >= 2
-        ) {
-          return previous;
-        }
+      setSelectedDocuments(
+        (previous) =>
+          previous.filter(
+            (doc) =>
+              doc._id !== documentId
+          )
+      );
 
-        return [
-          ...previous,
-          documentId,
-        ];
-      }
+      return;
+    }
+
+    if (
+      selectedDocumentIds.length >=
+      2
+    ) {
+      return;
+    }
+
+    setSelectedDocumentIds(
+      (previous) => [
+        ...previous,
+        documentId,
+      ]
+    );
+
+    setSelectedDocuments(
+      (previous) => [
+        ...previous,
+        document,
+      ]
     );
   };
 
@@ -72,6 +109,63 @@ export default function CreateChatDialog() {
 
       setOpen(false);
     };
+
+  const handleUploadSuccess = (
+    response: UploadDocumentResponse
+  ) => {
+    const uploadedDocument =
+      response.data;
+
+    const alreadySelected =
+      selectedDocumentIds.includes(
+        uploadedDocument._id
+      );
+
+    if (alreadySelected) {
+      return;
+    }
+
+    if (
+      selectedDocumentIds.length >=
+      2
+    ) {
+      return;
+    }
+
+    setSelectedDocumentIds(
+      (previous) => [
+        ...previous,
+        uploadedDocument._id,
+      ]
+    );
+
+    setSelectedDocuments(
+      (previous) => [
+        ...previous,
+        uploadedDocument,
+      ]
+    );
+  };
+
+  const handleRemoveDocument = (
+    documentId: string
+  ) => {
+    setSelectedDocumentIds(
+      (previous) =>
+        previous.filter(
+          (id) =>
+            id !== documentId
+        )
+    );
+
+    setSelectedDocuments(
+      (previous) =>
+        previous.filter(
+          (document) =>
+            document._id !== documentId
+        )
+    );
+  };
 
   return (
     <Dialog
@@ -98,9 +192,12 @@ export default function CreateChatDialog() {
           </DialogDescription>
         </DialogHeader>
 
-        <SelectedDocumentBadge
-          count={
-            selectedDocumentIds.length
+        <SelectedDocumentsList
+          documents={
+            selectedDocuments
+          }
+          onRemove={
+            handleRemoveDocument
           }
         />
 
@@ -113,13 +210,25 @@ export default function CreateChatDialog() {
           }
         />
 
+        <div className="space-y-2">
+          <p className="text-sm font-medium">
+            Upload New Document
+          </p>
+
+          <DocumentUploadButton
+            onUploadSuccess={
+              handleUploadSuccess
+            }
+          />
+        </div>
+
         <Button
           onClick={
             handleCreateChat
           }
           disabled={
             selectedDocumentIds.length ===
-              0 ||
+            0 ||
             createChatMutation.isPending
           }
         >
