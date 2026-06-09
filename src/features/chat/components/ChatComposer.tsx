@@ -13,19 +13,37 @@ import { Textarea }
 import {
   useSendMessageMutation,
 } from "@/features/chat/hooks/useSendMessageMutation";
+import type {
+  UseMutationResult,
+} from "@tanstack/react-query";
+
+import type {
+  SendMessageResponse,
+} from "@/types/chat.types";
 
 interface ChatComposerProps {
   chatId: string;
+  sendMessageMutation:
+    UseMutationResult<
+      SendMessageResponse,
+      Error,
+      {
+        chatId: string;
+        content: string;
+      }
+    >;
 }
 
 export default function ChatComposer({
   chatId,
+  sendMessageMutation
 }: ChatComposerProps) {
+
   const [content, setContent] =
     useState("");
 
-  const sendMessageMutation =
-    useSendMessageMutation();
+  // const sendMessageMutation =
+  //   useSendMessageMutation();
 
   const handleSubmit = () => {
     const trimmed =

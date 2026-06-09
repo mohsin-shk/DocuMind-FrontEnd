@@ -1,3 +1,8 @@
+import MarkdownRenderer
+  from "@/components/common/MarkdownRenderer";
+
+import MessageSources
+  from "./MessageSources";
 
 import {
   formatMessageTime,
@@ -37,7 +42,13 @@ export default function MessageBubble({
           }
         `}
       >
-        {message.content}
+        <MarkdownRenderer
+          content={message.content}
+        />
+        {/* {message.content} */}
+        <MessageSources
+          sources={message.sources}
+        />
         <div
           className="
     mt-2

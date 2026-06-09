@@ -1,5 +1,7 @@
 import ChatComposer from "./ChatComposer";
-
+import {
+  useSendMessageMutation,
+} from "@/features/chat/hooks/useSendMessageMutation";
 import {
   useChatQuery,
 } from "@/features/chat/hooks/useChatQuery";
@@ -14,6 +16,9 @@ interface ChatViewProps {
 export default function ChatView({
   chatId,
 }: ChatViewProps) {
+  const sendMessageMutation =
+  useSendMessageMutation();
+
   const {
     data,
     isLoading,
@@ -65,11 +70,17 @@ export default function ChatView({
         
         <MessageList
           messages={messages}
+          isAssistantThinking={
+    sendMessageMutation.isPending
+  }
         />
       </div>
 
       <ChatComposer
         chatId={chatId}
+        sendMessageMutation={
+    sendMessageMutation
+  }
       />
     </div>
   );
