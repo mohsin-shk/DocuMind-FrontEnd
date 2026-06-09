@@ -32,12 +32,13 @@ export default function MessageList({
   return (
     <div  ref={containerRef}
       className="
-        flex
-        flex-col
-        gap-4
+        
         overflow-y-auto
         h-full
+        pr-6
+         py-8
       ">
+      <div className="mx-auto w-full max-w-5xl flex flex-col gap-8">
       {messages.map(
         (message) => (
           <MessageBubble
@@ -46,6 +47,7 @@ export default function MessageList({
           />
         )
       )}
+      </div>
     </div>
   );
 }

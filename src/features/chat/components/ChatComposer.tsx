@@ -45,6 +45,7 @@ export default function ChatComposer({
 
   return (
     <div className="border-t p-4">
+      <div className="mx-auto max-w-5xl">
       <div className="flex gap-2">
         <Textarea
           value={content}
@@ -65,6 +66,7 @@ export default function ChatComposer({
         >
           <Send />
         </Button>
+      </div>
       </div>
     </div>
   );

@@ -43,7 +43,7 @@ export default function ChatView({
     data?.data.messages ?? [];
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full min-h-0 flex-col">
       {/* Header */}
 
       <div className="border-b px-6 py-4">
@@ -51,10 +51,18 @@ export default function ChatView({
           {chat?.title}
         </h2>
       </div>
+      {/* <div className="border-b">
+        <div className="mx-auto max-w-5xl px-6 py-4">
+          <h2 className="font-semibold">
+            {chat?.title}
+          </h2>
+        </div>
+      </div> */}
 
       {/* Messages */}
 
-      <div className="flex-1 overflow-y-auto p-6">
+      <div className="flex-1 min-h-0 p-6">
+        
         <MessageList
           messages={messages}
         />

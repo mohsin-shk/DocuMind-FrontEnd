@@ -26,7 +26,7 @@ export default function MessageBubble({
     >
       <div
         className={`
-          max-w-[80%]
+          max-w-[75%]
           rounded-xl
           px-4
           py-3

@@ -8,7 +8,7 @@ export default function WorkspacePage() {
 
   if (!chatId) {
     return (
-      <div className="flex h-full items-center justify-center">
+      <div className="flex h-full items-center justify-center ">
         <div className="text-center">
           <h2 className="text-2xl font-semibold">
             Welcome to DocuMind
@@ -23,8 +23,10 @@ export default function WorkspacePage() {
   }
 
   return (
-    <ChatView
-      chatId={chatId}
-    />
+    <div className="flex h-full min-h-0 flex-col ">
+      <ChatView
+        chatId={chatId}
+      />
+    </div>
   );
 }
