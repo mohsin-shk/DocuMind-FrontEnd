@@ -10,9 +10,6 @@ import { Button }
 import { Textarea }
   from "@/components/ui/textarea";
 
-import {
-  useSendMessageMutation,
-} from "@/features/chat/hooks/useSendMessageMutation";
 import type {
   UseMutationResult,
 } from "@tanstack/react-query";

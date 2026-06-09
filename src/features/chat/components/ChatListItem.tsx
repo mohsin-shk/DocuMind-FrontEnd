@@ -1,6 +1,6 @@
 import { MessageSquare } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-
+import ChatItemActions from "./ChatItemActions";
 import {
   SidebarMenuButton,
   SidebarMenuItem,
@@ -23,21 +23,37 @@ export default function ChatListItem({
     chatId === chat._id;
 
   return (
-    <SidebarMenuItem>
-      <SidebarMenuButton
-        asChild
-        isActive={isActive}
-      >
-        <Link
-          to={`/chat/${chat._id}`}
+    <SidebarMenuItem className="group">
+      <div className="flex items-center gap-1">
+        <SidebarMenuButton
+          asChild
+          isActive={isActive}
+          className="flex-1"
         >
-          <MessageSquare />
+          <Link
+            to={`/chat/${chat._id}`}
+          >
+            <MessageSquare />
 
-          <span className="truncate">
-            {chat.title}
-          </span>
-        </Link>
-      </SidebarMenuButton>
+            <span className="truncate">
+              {chat.title}
+            </span>
+
+          </Link>
+        </SidebarMenuButton>
+        <div
+          className="
+          opacity-0
+          transition-opacity
+          group-hover:opacity-100
+        "
+        >
+          <ChatItemActions
+            chatId={chat._id}
+          />
+        </div>
+
+      </div>
     </SidebarMenuItem>
   );
 }

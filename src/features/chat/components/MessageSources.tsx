@@ -16,11 +16,15 @@ export default function MessageSources({
   }
 
   return (
-    <div className="mt-3 flex flex-wrap gap-2">
-      {sources.map((source) => (
-        <div
-          key={source._id}
-          className="
+    <div className="mt-3">
+      <p className="mb-2 text-xs text-muted-foreground">
+        Sources:
+      </p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {sources.map((source) => (
+          <div
+            key={source._id}
+            className="
             flex
             items-center
             gap-1
@@ -31,14 +35,15 @@ export default function MessageSources({
             text-xs
             text-muted-foreground
           "
-        >
-          <FileText className="size-3" />
+          >
+            <FileText className="size-3" />
 
-          <span>
-            {source.title}
-          </span>
-        </div>
-      ))}
+            <span>
+              {source.title}
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

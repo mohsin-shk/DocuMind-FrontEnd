@@ -1,5 +1,5 @@
 import { FileText } from "lucide-react";
-
+import DocumentItemActions from "./DocumentItemActions";
 import {
   SidebarMenuButton,
   SidebarMenuItem,
@@ -17,14 +17,32 @@ export default function DocumentListItem({
   document,
 }: DocumentListItemProps) {
   return (
-    <SidebarMenuItem>
-      <SidebarMenuButton>
+  <SidebarMenuItem className="group">
+    <div className="flex items-center gap-1">
+      <SidebarMenuButton
+        className="flex-1"
+      >
         <FileText />
 
         <span className="truncate">
           {document.title}
         </span>
       </SidebarMenuButton>
-    </SidebarMenuItem>
-  );
+
+      <div
+        className="
+          opacity-0
+          transition-opacity
+          group-hover:opacity-100
+        "
+      >
+        <DocumentItemActions
+          documentId={
+            document._id
+          }
+        />
+      </div>
+    </div>
+  </SidebarMenuItem>
+);
 }

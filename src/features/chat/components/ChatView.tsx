@@ -1,4 +1,6 @@
 import ChatComposer from "./ChatComposer";
+import ChatDocumentBadges
+  from "./ChatDocumentBadges";
 import {
   useSendMessageMutation,
 } from "@/features/chat/hooks/useSendMessageMutation";
@@ -17,7 +19,7 @@ export default function ChatView({
   chatId,
 }: ChatViewProps) {
   const sendMessageMutation =
-  useSendMessageMutation();
+    useSendMessageMutation();
 
   const {
     data,
@@ -55,6 +57,9 @@ export default function ChatView({
         <h2 className="font-semibold">
           {chat?.title}
         </h2>
+        <ChatDocumentBadges
+          documents={chat?.documents ?? []}
+        />
       </div>
       {/* <div className="border-b">
         <div className="mx-auto max-w-5xl px-6 py-4">
@@ -67,20 +72,20 @@ export default function ChatView({
       {/* Messages */}
 
       <div className="flex-1 min-h-0 p-6">
-        
+
         <MessageList
           messages={messages}
           isAssistantThinking={
-    sendMessageMutation.isPending
-  }
+            sendMessageMutation.isPending
+          }
         />
       </div>
 
       <ChatComposer
         chatId={chatId}
         sendMessageMutation={
-    sendMessageMutation
-  }
+          sendMessageMutation
+        }
       />
     </div>
   );
