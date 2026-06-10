@@ -54,18 +54,6 @@ export default function ChatView({
   return (
     <div className="flex h-full min-h-0 flex-col">
       {/* Header */}
-
-      {/* <div className="border-b px-6 py-4">
-        <h2 className="font-semibold">
-          {chat?.title}
-        </h2>
-        <ChatDocumentBadges
-          documents={chat?.documents ?? []}
-        />
-        <ChatHeaderActions
-              chatId={chatId}
-            />
-      </div> */}
       <div className="border-b">
         <div className="mx-auto max-w-5xl px-6 py-4">
           <div className="flex items-start justify-between gap-4">

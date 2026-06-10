@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import {
-  Upload,
+  // Upload,
   // FileText,
   // MessageSquare,
-  Plus,
+  // Plus,
   Settings,
 } from "lucide-react";
-import logo from "/src/assets/documind_logo.png"
+// import logo from "/src/assets/documind_logo.png"
 // import { Button } from "@/components/ui/button";
 import CreateChatDialog from "@/features/chat/components/CreateChatDialog";
 import ChatSidebarSection from "@/features/chat/components/ChatSidebarSection";
@@ -16,9 +16,9 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
+  // SidebarGroup,
+  // SidebarGroupContent,
+  // SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
