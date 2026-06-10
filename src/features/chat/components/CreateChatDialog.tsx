@@ -28,7 +28,13 @@ import {
   useCreateChatMutation,
 } from "@/features/chat/hooks/useCreateChatMutation";
 
-export default function CreateChatDialog() {
+interface CreateChatDialogProps {
+  trigger?: React.ReactNode;
+}
+
+export default function CreateChatDialog({
+  trigger,
+}: CreateChatDialogProps) {
   const [open, setOpen] =
     useState(false);
 
@@ -173,10 +179,12 @@ export default function CreateChatDialog() {
       onOpenChange={setOpen}
     >
       <DialogTrigger asChild>
-        <Button className="w-full">
-          <Plus className="size-4" />
-          New Chat
-        </Button>
+        {trigger ?? (
+          <Button className="w-full">
+            <Plus className="size-4" />
+            New Chat
+          </Button>
+        )}
       </DialogTrigger>
 
       <DialogContent>

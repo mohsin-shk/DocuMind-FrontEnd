@@ -2,7 +2,9 @@ import { useRef } from "react";
 import { Upload } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-
+import type {
+  ButtonProps,
+} from "@/components/ui/button";
 import {
   useUploadDocumentMutation,
 } from "@/features/documents/hooks/useUploadDocumentMutation";
@@ -15,10 +17,14 @@ interface DocumentUploadButtonProps {
   onUploadSuccess?: (
     response: UploadDocumentResponse
   ) => void;
+  buttonText?: string;
+  variant?: ButtonProps["variant"];
 }
 
 export default function DocumentUploadButton({
   onUploadSuccess,
+  buttonText = "Upload Document",
+  variant = "default"
 }: DocumentUploadButtonProps) {
   const inputRef =
     useRef<HTMLInputElement>(null);
@@ -69,7 +75,7 @@ export default function DocumentUploadButton({
 
       <Button
         type="button"
-        variant="outline"
+        variant={variant}
         onClick={() =>
           inputRef.current?.click()
         }
@@ -81,7 +87,7 @@ export default function DocumentUploadButton({
 
         {uploadMutation.isPending
           ? "Uploading..."
-          : "Upload Document"}
+          : buttonText}
       </Button>
     </>
   );

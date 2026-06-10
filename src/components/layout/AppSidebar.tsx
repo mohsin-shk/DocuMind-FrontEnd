@@ -8,7 +8,8 @@ import {
 // import { Button } from "@/components/ui/button";
 import CreateChatDialog from "@/features/chat/components/CreateChatDialog";
 import ChatSidebarSection from "@/features/chat/components/ChatSidebarSection";
-
+import DocumentUploadButton
+  from "@/features/documents/components/DocumentUploadButton";
 import {
   Sidebar,
   SidebarContent,
@@ -42,11 +43,14 @@ export default function AppSidebar() {
           </p>
         </div>
 
-        {/* <Button className="w-full">
-          <Plus className="size-4" />
-          New Chat
-        </Button> */}
-        <CreateChatDialog />
+        <div className="flex flex-col gap-2">
+          <DocumentUploadButton
+            buttonText="Upload"
+            variant="outline"
+          />
+
+          <CreateChatDialog />
+        </div>
       </SidebarHeader>
 
       {/* ========================================
@@ -55,7 +59,7 @@ export default function AppSidebar() {
 
       <SidebarContent>
         {/* Documents */}
-        <DocumentSidebarSection/>
+        <DocumentSidebarSection />
 
         {/* Chats */}
 
