@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
 import {
+  Upload,
   // FileText,
   // MessageSquare,
-  // Plus,
+  Plus,
   Settings,
 } from "lucide-react";
-
+import logo from "/src/assets/documind_logo.png"
 // import { Button } from "@/components/ui/button";
 import CreateChatDialog from "@/features/chat/components/CreateChatDialog";
 import ChatSidebarSection from "@/features/chat/components/ChatSidebarSection";
@@ -33,22 +35,21 @@ export default function AppSidebar() {
       ======================================== */}
 
       <SidebarHeader className="gap-4">
-        <div className="px-2">
-          <h1 className="text-lg font-semibold">
-            DocuMind
-          </h1>
-
+        <div className="px-2 group-data-[collapsible=icon]:hidden">
+          <Link to="/">
+            <h1 className="text-lg font-semibold">
+              DocuMind
+            </h1>
+          </Link>
           <p className="text-xs text-muted-foreground">
             AI Document Intelligence
           </p>
         </div>
-
         <div className="flex flex-col gap-2">
           <DocumentUploadButton
             buttonText="Upload"
             variant="outline"
           />
-
           <CreateChatDialog />
         </div>
       </SidebarHeader>
