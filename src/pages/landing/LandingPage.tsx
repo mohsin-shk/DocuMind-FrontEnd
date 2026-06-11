@@ -267,18 +267,18 @@ const LandingPage: FC = () => {
   }, []);
 
   const steps: Array<{ num: string; title: string; desc: string }> = [
-    { num: "01", title: "Upload your document",  desc: "Drop a PDF. DocuMind extracts raw text while preserving structure, layout, and paragraph boundaries." },
-    { num: "02", title: "Semantic chunking",      desc: "Text is split into overlapping ~512-token chunks — large enough for context, small enough for precision." },
+    { num: "01", title: "Upload your document",  desc: "Drop a document. DocuMind extracts raw text while preserving structure, layout, and paragraph boundaries." },
+    { num: "02", title: "Semantic chunking",      desc: "Text is split into overlapping chunks — large enough for context, small enough for precision." },
     { num: "03", title: "Generate embeddings",    desc: "Each chunk is encoded into a 1536-dimensional vector using OpenAI's embedding model." },
     { num: "04", title: "Store in Pinecone",      desc: "Vectors are upserted into your personal Pinecone namespace for instant, private retrieval." },
     { num: "05", title: "Query & retrieve",       desc: "Your question is embedded and the top-k most semantically relevant chunks are fetched in milliseconds." },
-    { num: "06", title: "GPT-4o mini answers",    desc: "Retrieved context + your question → a grounded, sourced answer with the exact document reference." },
+    { num: "06", title: "GPT-4.1 mini answers",    desc: "Retrieved context + your question → a grounded, sourced answer with the exact document reference." },
   ];
 
   const features: FeatCardProps[] = [
     { icon: "🔍", title: "Grounded answers",    desc: "Every response is sourced directly from your document's vector chunks. No hallucinations, no guessing." },
     { icon: "💬", title: "Persistent chat",     desc: "Full conversation history with context-aware follow-ups across sessions — just like talking to a colleague." },
-    { icon: "📊", title: "Document comparison", desc: "Upload two PDFs and DocuMind highlights differences, contradictions, and overlapping clauses automatically." },
+    { icon: "📊", title: "Document comparison", desc: "Upload two files and DocuMind highlights differences, contradictions, and overlapping clauses automatically." },
     { icon: "⚡", title: "Semantic chunking",   desc: "Paragraph-aware overlapping chunks preserve meaning and maximise retrieval precision on complex documents." },
     { icon: "🌲", title: "Pinecone storage",    desc: "High-dimensional embeddings stored in Pinecone for sub-100ms nearest-neighbour retrieval at scale." },
     { icon: "🔒", title: "Private by design",   desc: "Documents are processed and namespaced per user. Nothing crosses account boundaries." },
@@ -452,14 +452,14 @@ const LandingPage: FC = () => {
           <div className="dm-hero-grid" />
           <div className="dm-badge">
             <span className="dm-badge-dot" />
-            RAG-powered · GPT-4o mini · Pinecone
+            RAG-powered · GPT-4.1 mini · Pinecone
           </div>
           <h1 className="dm-title">
             Your documents,<br />
             <span className="dm-title-green">finally answerable.</span>
           </h1>
           <p className="dm-sub">
-            Upload a PDF. Ask anything. Get grounded answers with cited sources —
+            Upload a document. Ask anything. Get grounded answers with cited sources —
             powered by a full vector retrieval pipeline.
           </p>
           <p className="dm-tw-row">
@@ -500,7 +500,7 @@ const LandingPage: FC = () => {
           <div className="dm-how-inner">
             <div>
               <p className="dm-eyebrow">How it works</p>
-              <h2 className="dm-section-title">Six steps from<br />PDF to insight</h2>
+              <h2 className="dm-section-title">Six steps from<br />Document to insight</h2>
               <p className="dm-section-sub" style={{ marginBottom: 44 }}>
                 A fully automated retrieval-augmented pipeline under the hood — you just ask questions.
               </p>
@@ -554,7 +554,7 @@ const LandingPage: FC = () => {
         <section className="dm-section" id="compare">
           <p className="dm-eyebrow">Multi-document</p>
           <h2 className="dm-section-title">Compare two documents<br />side by side</h2>
-          <p className="dm-section-sub">Upload any two PDFs and DocuMind surfaces agreements, contradictions, and deltas — automatically.</p>
+          <p className="dm-section-sub">Upload any two documents and DocuMind surfaces agreements, contradictions, and deltas — automatically.</p>
           <div className="dm-compare">
             <div className="dm-compare-head">
               <div className="dm-compare-doc"><div className="dm-doc-icon">📘</div> contract_v1.pdf</div>
@@ -583,7 +583,7 @@ const LandingPage: FC = () => {
         {/* FOOTER */}
         <footer className="dm-footer">
           <span className="dm-footer-logo">DocuMind</span>
-          <span>Built with React · Pinecone · GPT-4o mini</span>
+          <span>Built with React  · Tailwind  ·  Shadcn  ·  Pinecone ·  GPT-4.1 mini  ·  OpenAI</span>
           <span>© 2026 DocuMind</span>
         </footer>
       </div>
